@@ -6,8 +6,7 @@ LABEL maintainer="shubham.soni@example.com"
 
 ### Running OS update and installing packages
 RUN yum update -y && \
-    yum install -y applydeltarpm httpd git wget zip unzip net-tools && \
-    yum clean all
+    yum install -y applydeltarpm httpd git wget zip unzip net-tools
 
 ### Set working directory
 WORKDIR /opt/
