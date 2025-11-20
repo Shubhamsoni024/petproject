@@ -1,5 +1,5 @@
 ### Base Image
-FROM centos:latest
+FROM rockylinux:8
 
 ### Owner of the Docker configuration file
 LABEL maintainer="shubham.soni@example.com"
