@@ -1,30 +1,31 @@
-### Now we are working the docker component
-FROM centos
+### Base Image
+FROM centos:latest
 
 ### Owner of the Docker configuration file
-MAINTAINER shubham.soni@example.com
+LABEL maintainer="shubham.soni@example.com"
 
-### Running the os update and installing the apache package
-RUN yum update -y &&  \
-    yum install applydeltarpm httpd git wget zip unzip net-tools -y
+### Running OS update and installing packages
+RUN yum update -y && \
+    yum install -y applydeltarpm httpd git wget zip unzip net-tools && \
+    yum clean all
 
-## Changing the Working directory
+### Set working directory
 WORKDIR /opt/
 
-### Adding the developer website to the Apache DocumentRoot
-RUN git pull https://github.com/Shubhamsoni024/petproject.git
+### Clone the developer website repository
+RUN git clone https://github.com/Shubhamsoni024/petproject.git
 
-### Copying the configuration files to the main document root to run
-RUN cp -rvf  petproject/* /var/www/html/
+### Copy website files to Apache DocumentRoot
+RUN cp -rvf petproject/* /var/www/html/
 
-### Removing the docker file inside of /var/www/html
-RUN rm -rf /var/www/html/Dockerfile
+### Remove Dockerfile inside the DocumentRoot (if exists)
+RUN rm -f /var/www/html/Dockerfile || true
 
 ### Environment variable
-ENV myname shubham_webhost
+ENV myname="shubham_webhost"
 
-### Starting the apache configuration
-CMD /usr/sbin/httpd -D FOREGROUND
-
-### Exposing the containerPort
+### Expose Apache port
 EXPOSE 80
+
+### Start Apache server in foreground
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
