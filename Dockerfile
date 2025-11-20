@@ -1,5 +1,5 @@
 ### Now we are working the docker component
-FROM rockylinux:latest
+FROM centos
 
 ### Owner of the Docker configuration file
 MAINTAINER shubham.soni@example.com
