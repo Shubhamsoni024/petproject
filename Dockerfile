@@ -1,5 +1,5 @@
 ### Now we are working the docker component
-FROM centos:7
+FROM centos:latest
 
 ### Owner of the Docker configuration file
 MAINTAINER shubham.soni@example.com
