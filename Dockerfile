@@ -5,8 +5,9 @@ FROM rockylinux:8
 LABEL maintainer="shubham.soni@example.com"
 
 ### Running OS update and installing packages
-RUN yum update -y && \
-    yum install -y applydeltarpm httpd git wget zip unzip net-tools
+RUN dnf -y update && \
+    dnf -y install httpd git wget zip unzip net-tools && \
+    dnf clean all
 
 ### Set working directory
 WORKDIR /opt/
