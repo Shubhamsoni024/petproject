@@ -13,10 +13,10 @@ RUN dnf -y update && \
 WORKDIR /opt/
 
 ### Clone the developer website repository
-RUN git clone https://github.com/Shubhamsoni024/chain.git
+RUN git clone https://github.com/Shubhamsoni024/petproject.git
 
 ### Copy website files to Apache DocumentRoot
-RUN cp -rvf chain/* /var/www/html/
+RUN cp -rvf petproject/* /var/www/html/
 
 ### Remove Dockerfile inside the DocumentRoot (if exists)
 RUN rm -f /var/www/html/Dockerfile || true
